@@ -5,12 +5,10 @@
 
 #include <enclib.h>
 
-BMPImage *enc_evenodd_gray(BMPImage *img, char *str) {
+BMPImage *enc_evenodd_gray(BMPImage *img, uint8_t *data, uint bitlen) {
 	uint i, j, idx = 0;
 	uint w = img->w, h = img->h;
-	uint bitlen;
 	BMPImage *newimg = newBMP(w, h);
-	uint8_t *data = strToBit(str, &bitlen);
 
 	for (i = 0; i < h; i++) {
 		for (j = 0; j < w; j++) {
@@ -46,12 +44,10 @@ char *dec_evenodd_gray(BMPImage *img) {
 	return bitToStr(buf, MAX_BUF_SIZE, &blen);
 }
 
-BMPImage *enc_evenodd_rgb(BMPImage *img, char *str) {
+BMPImage *enc_evenodd_rgb(BMPImage *img, uint8_t *data, uint bitlen) {
 	uint i, j, idx = 0;
 	uint w = img->w, h = img->h;
-	uint bitlen;
 	BMPImage *newimg = newBMP(w, h);
-	uint8_t *data = strToBit(str, &bitlen);
 
 	/* Implement here */
 

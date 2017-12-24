@@ -14,9 +14,9 @@
 
 #define MAX_BUF_SIZE 4096
 
-BMPImage *enc_evenodd_gray(BMPImage *img, char *str);
+BMPImage *enc_evenodd_gray(BMPImage *img, uint8_t *data, uint bitlen);
 char *dec_evenodd_gray(BMPImage *img);
-BMPImage *enc_evenodd_rgb(BMPImage *img, char *str);
+BMPImage *enc_evenodd_rgb(BMPImage *img, uint8_t *data, uint bitlen);
 char *dec_evenodd_rgb(BMPImage *img);
 
 #endif
