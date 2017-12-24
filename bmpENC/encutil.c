@@ -86,6 +86,8 @@ BMPImage *encBMP(BMPImage *img, char *str, BMPImage *(*encfn)(BMPImage *, uint8_
 	return encfn(img, dbit, blen);
 }
 
-char *decBMP(BMPImage *img, char *(*decfn)(BMPImage *)) {
-	return decfn(img);
+char *decBMP(BMPImage *img, uint8_t *(*decfn)(BMPImage *)) {
+	uint blen;
+ 	uint8_t *buf = decfn(img);
+	return bitToStr(buf, MAX_BUF_SIZE, &blen);
 }

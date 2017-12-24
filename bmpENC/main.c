@@ -16,7 +16,7 @@ int main() {
 	BMPImage *img, *newimg;
 	char *str;
 
-	const char bmpfile[256] = "img/black.bmp";
+	const char bmpfile[256] = "img/white.bmp";
 	char data[] = "--data?--testdata Hello,world!\nHELLO HELLO Repeat\n";
 
 	img = openBMP(bmpfile);

@@ -13,6 +13,8 @@
 
 #define DATA_HEADER_LENGTH 9
 
+#define MAX_BUF_SIZE 4096
+
 typedef unsigned long uint;
 
 const extern uint DATA_HEADER, DATA_FOOTER;
@@ -26,6 +28,6 @@ void attachHeader(uint8_t **b, uint len);
 void detachHeader(uint8_t **b, uint len);
 
 BMPImage *encBMP(BMPImage *img, char *str, BMPImage *(*encfn)(BMPImage *, uint8_t *, uint));
-char *decBMP(BMPImage *img, char *(*decfn)(BMPImage *));
+char *decBMP(BMPImage *img, uint8_t *(*decfn)(BMPImage *));
 
 #endif
