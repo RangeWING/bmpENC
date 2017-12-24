@@ -78,3 +78,14 @@ void detachHeader(uint8_t **b, uint len) {
 	free(*b);
 	*b = buf;
 }
+
+BMPImage *encBMP(BMPImage *img, char *str, BMPImage *(*encfn)(BMPImage *, uint8_t *, uint)) {
+	uint blen;
+	uint8_t *dbit = strToBit(str, &blen);
+
+	return encfn(img, dbit, blen);
+}
+
+char *decBMP(BMPImage *img, char *(*decfn)(BMPImage *)) {
+	return decfn(img);
+}

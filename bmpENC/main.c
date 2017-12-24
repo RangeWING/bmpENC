@@ -13,38 +13,27 @@
 #include <enclib.h>
 
 int main() {
-	uint w, h;
 	BMPImage *img, *newimg;
+	char *str;
 
 	const char bmpfile[256] = "img/black.bmp";
-	char data[] = "--data?--testdata Hello,world!\nHELLO HELLO Repeat";
-	uint blen;
-	uint8_t *dbit = strToBit(data, &blen);
+	char data[] = "--data?--testdata Hello,world!\nHELLO HELLO Repeat\n";
 
 	img = openBMP(bmpfile);
-	w = img->w;
-	h = img->h;
-
-	newimg = enc_evenodd_gray(img, data);
-
+	newimg = encBMP(img, data, enc_evenodd_gray);
 	writeBMP(newimg, "img/test.bmp");
 
 	closeBMP(img);
 	closeBMP(newimg);
-
 	system("pause");
 
-
 	img = openBMP("img/test.bmp");
-
-	char *str = dec_evenodd_gray(img);
+	str = decBMP(img, dec_evenodd_gray);
+	closeBMP(img);
 
 	printf("%s", str);
-	free(str);
-	
-	closeBMP(img);
+	free(str);	
 	system("pause");
 
 	return 0;
 }
-
