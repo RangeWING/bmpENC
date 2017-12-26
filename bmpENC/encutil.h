@@ -27,7 +27,5 @@ char *bitToStr(uint8_t *b, uint len, uint *slen);
 void attachHeader(uint8_t **b, uint len);
 void detachHeader(uint8_t **b, uint len);
 
-BMPImage *encBMP(BMPImage *img, char *str, BMPImage *(*encfn)(BMPImage *, uint8_t *, uint));
-char *decBMP(BMPImage *img, uint8_t *(*decfn)(BMPImage *));
 
 #endif
