@@ -34,10 +34,10 @@ The data always end with `0x00`. It is also added by `attachHeader()`.
  
 ## Assignments
 Look at each description file
-+ [Assignment 1 : Even/Odd Encryption](./[1] Even_Odd_Encryption.md)
-+ [Assignment 2 : RGB-Shuffle](./[2] RGB_Shuffle.md)
-+ [Assignment 3 : Byte-Shuffle](./[3] Byte_Shuffle.md)
-+ [Assignment 4 : Random-Shuffle	(Not for elementary)](./[4] Random_Shuffle.md)
-+ [Assignment 5 : Advanced Technique (Only for Lv3)](./[5] Advanced_Technique.md)
-+ [Assignment 6 : Creative Technique](./[6] Creative_Technique.md)
-+ [Assignment 7 : Presentation](./[7] Presentation.md)
++ [Assignment 1 : Even/Odd Encryption]([1] Even_Odd_Encryption.md)
++ [Assignment 2 : RGB-Shuffle]([2] RGB_Shuffle.md)
++ [Assignment 3 : Byte-Shuffle]([3] Byte_Shuffle.md)
++ [Assignment 4 : Random-Shuffle	(Not for elementary)]([4] Random_Shuffle.md)
++ [Assignment 5 : Advanced Technique (Only for Lv3)]([5] Advanced_Technique.md)
++ [Assignment 6 : Creative Technique]([6] Creative_Technique.md)
++ [Assignment 7 : Presentation]([7] Presentation.md)
