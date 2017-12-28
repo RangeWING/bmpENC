@@ -18,7 +18,27 @@ Instructor's Mannual을 대강 완성하였습니다.
  
 ## 0. Introduction
 ### 0.1 functions
-TODO
+encutil.h has some useful functions.  
+encutil.h에 몇가지 유용한 함수들이 있습니다.  
++ `uint8_t *byteToBit(uint8_t *bt, uint len, uint *bitlen)`  
+  - convert byte array `bt` of length `len` into the bit array of length `bitlen` 
+  - 길이가 `len`인 byte 배열 `bt`를 길이가 `bitlen`인 bit array로 변환합니다.
+  - Ex) bt=`{0x0F 0x33}` => `{0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}`
++ `uint8_t *bitToByte(uint8_t *b, uint len, uint *bytelen)`
+  - convert bit array `b` of length `len` into the byte array of length `bytelen`
+  - 길이가 `len`인 bit 배열 `b`를 길이가 `bytelen`인 byte array로 변환합니다.
+  - Ex) b=`{0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1}` => `{0x0F 0x33}`
++ `uint8_t *strToBit(char *bt, uint *bitlen)`
+  - attach header to the string `bt` and then call `byteToBit()`
+  - 문자열 `bt`에 header를 붙이고 `byteToBit()`를 호출합니다.
++ `char *bitToStr(uint8_t *b, uint len, uint *slen)`
+  - call `bitToByte()` and detach header from the array.
+  - `bitToByte()`를 호출하고 header를 뗍니다.
++ `uint8_t *makeOrder(int n, int len)`
+  - make the order array with the integer `n` of length `len`
+  - `len` 자리의 정수 `n`으로 순서 배열을 만듭니다.
+  - Ex) `makeOrder(4231, 4) == {4, 2, 3, 1, 0}` (ends with 0)
+
 
 ### 0.2 Data 
 #### 0.2.1 Header/Footer  
