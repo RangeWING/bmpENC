@@ -13,8 +13,8 @@ tqbmp library를 사용합니다. 사용법과 예제는 [**이 링크**](https:
  + enclib: the code that you should implement (구현할 파일)
 
 ## -1. 튜터님들께
-아직 다 못썼습니다 죄송합니다 ㅠㅠ  
-**맨 밑의 Instructor's Mannual부터 봐주시면 감사하겠습니다.**
+Instructor's Mannual을 대강 완성하였습니다.  
+맨 아래에서 봐주세요.  
  
 ## 0. Introduction
 ### 0.1 functions
