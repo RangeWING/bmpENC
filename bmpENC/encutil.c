@@ -58,6 +58,18 @@ char *bitToStr(uint8_t *b, uint len, uint *slen) {
 	return buf;
 }
 
+uint8_t *makeOrder(int n, int len) {
+	uint8_t *arr = calloc(len+1, sizeof(uint8_t));
+	int i;
+
+	for (i = 0; i < len; i++) {
+		arr[len - i - 1] = (n % 10);
+		n /= 10;
+	}
+
+	return arr;
+}
+
 void attachHeader(uint8_t **b, uint len) {
 	uint8_t *buf = calloc(sizeof(uint8_t), len + DATA_HEADER_LENGTH);
 

@@ -24,6 +24,8 @@ uint8_t *bitToByte(uint8_t *b, uint len, uint *bytelen);
 uint8_t *strToBit(char *bt, uint *bitlen);
 char *bitToStr(uint8_t *b, uint len, uint *slen);
 
+uint8_t *makeOrder(int n, int len);
+
 void attachHeader(uint8_t **b, uint len);
 void detachHeader(uint8_t **b, uint len);
 

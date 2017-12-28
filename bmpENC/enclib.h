@@ -16,5 +16,8 @@ BMPImage *enc_evenodd_gray(BMPImage *img, uint8_t *data, uint bitlen);
 uint8_t *dec_evenodd_gray(BMPImage *img);
 BMPImage *enc_evenodd_rgb(BMPImage *img, uint8_t *data, uint bitlen);
 uint8_t *dec_evenodd_rgb(BMPImage *img);
+BMPImage *enc_rgb_shuffle(BMPImage *img, uint8_t *data, uint bitlen, int passwd);
+uint8_t *dec_rgb_shuffle(BMPImage *img, int passwd);
+
 
 #endif
