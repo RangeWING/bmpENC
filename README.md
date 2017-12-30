@@ -13,8 +13,9 @@ tqbmp library를 사용합니다. 사용법과 예제는 [**이 링크**](https:
  + enclib: the code that you should implement (구현할 파일)
 
 ## -1. 튜터님들께
-Instructor's Mannual을 대강 완성하였습니다.  
-맨 아래에서 봐주세요.  
+[Instructor's Mannual](Instructor.md)을 대강 완성하였습니다.  
+Instructor's Mannual은 캠프 전날 내려둘 예정입니다.  
+필요하시면 맨 아래 연락처로 요청해주세요.  
  
 ## 0. Introduction
 ### 0.1 functions
@@ -70,4 +71,4 @@ Look at each description file
 + Korean: [click here](Instructor.md) 
 
 ### Contact
-RangeWING (rangewing@wingdev.kr)  
+RangeWING (rangewing@wingdev.kr or rangewing@kaist.ac.kr)  
