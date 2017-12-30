@@ -3,7 +3,7 @@
 * Data encoding/decoding util
 */
 
-#include <encutil.h>
+#include "encutil.h"
 
 const uint DATA_HEADER = 0x5533FF0F; //0F FF 33 55
 const uint DATA_FOOTER = 0x0FFF3355; //55 33 FF 0F

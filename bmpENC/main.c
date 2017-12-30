@@ -9,8 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <tqbmp.h>
-#include <enclib.h>
+#include "tqbmp.h"
+#include "enclib.h"
 
 int main() {
 	BMPImage *img, *newimg;
@@ -24,7 +24,7 @@ int main() {
 	// encrypt
 	img = openBMP(bmpfile);
 	buf = strToBit(data, &blen);	//convert string(data) to bit array
-	newimg = enc_byte_shuffle(img, buf, blen, 1324);	//encrypt 
+	newimg = enc_byte_shuffle(img, buf, blen, 1324);	//encrypt - change this 
 	free(buf);
 
 	writeBMP(newimg, "img/test.bmp");

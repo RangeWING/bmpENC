@@ -3,7 +3,7 @@
 * BMP image encoding/decoding library: for assignment
 */
 
-#include <enclib.h>
+#include "enclib.h"
 
 BMPImage *enc_evenodd_gray(BMPImage *img, uint8_t *data, uint bitlen) {
 	uint i, j, idx = 0;

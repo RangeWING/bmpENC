@@ -1,4 +1,4 @@
-#include <tqbmp.h>
+#include "tqbmp.h"
 #include <stdlib.h>
 
 /*

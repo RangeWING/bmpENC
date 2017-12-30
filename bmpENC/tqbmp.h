@@ -8,7 +8,7 @@
 
 #include <stdlib.h>
 #include <stdint.h>
-#include <qdbmp.h>
+#include "qdbmp.h"
 
 #define checkBMP(k) BMP_CHECK_ERROR(stdout, k);
 

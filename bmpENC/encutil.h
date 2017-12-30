@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include <tqbmp.h>
+#include "tqbmp.h"
 
 #define DATA_HEADER_LENGTH 9
 

@@ -8,9 +8,9 @@
 
 #include <stdlib.h>
 #include <stdint.h>
-#include <encutil.h>
 #include <string.h>
-#include <tqbmp.h>
+#include "encutil.h"
+#include "tqbmp.h"
 
 BMPImage *enc_evenodd_gray(BMPImage *img, uint8_t *data, uint bitlen);
 uint8_t *dec_evenodd_gray(BMPImage *img);
