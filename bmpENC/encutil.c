@@ -63,35 +63,26 @@ char *bitToStr(uint8_t *b, uint len, uint *slen) {
 	return buf;
 }
 
+/* makeOrder
+** @parameters:
+**	int n: order
+**	int len: the length of order
+** @return: the pointer of order array, ended with 0
+** @example: makeOrder(1324, 4) should return {1,3,2,4,0}
+*/
 uint8_t *makeOrder(int n, int len) {
-	uint8_t *arr = calloc(len+1, sizeof(uint8_t));
-	int i;
+	uint8_t *arr;
 
-	for (i = 0; i < len; i++) {
-		arr[len - i - 1] = (n % 10);
-		n /= 10;
-	}
-
+	/* [Assignment 2.1.1] Implement here */
+	
 	return arr;
 }
 
 int intToOrder(int n, int len) {
-	uint8_t *buf = calloc(len, sizeof(uint8_t));
-	int i, j, k, t, result = 0;
+	int result = 0;
 
-	for (i = 0; i < len; i++) {
-		t = n % len;
-		for (j = 0; j < len; j++) {
-			k = (t + j) % len;
-			if (buf[k] == 0) {
-				buf[k]++;
-				break;
-			}
-		}
-		result = (result * 10) + (k + 1);
-			
-		n /= len;
-	}
+	/* [Assignment 4.1.1] Implement here 
+		Hint: you can interpret n as radix of len */
 
 	return result;
 }

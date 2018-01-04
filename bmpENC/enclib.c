@@ -5,6 +5,12 @@
 
 #include "enclib.h"
 
+/* enc_evenodd_gray
+** parameters:
+**	BMPImage *img: an image to encode
+**	uint8_t *data: bit array of data
+**	uint bitlen: the length of data
+*/
 BMPImage *enc_evenodd_gray(BMPImage *img, uint8_t *data, uint bitlen) {
 	uint i, j, idx = 0;
 	uint w = img->w, h = img->h;
@@ -20,10 +26,7 @@ BMPImage *enc_evenodd_gray(BMPImage *img, uint8_t *data, uint bitlen) {
 					and if the corresponding bit is 1, set the pixel (p) to be odd.
 			*/
 
-			if (p % 2 == 1) p--;
-			if (idx < bitlen) {
-				if (data[idx++] == 1) p++;
-			}
+
 
 			/* Do not edit below */
 
@@ -35,7 +38,10 @@ BMPImage *enc_evenodd_gray(BMPImage *img, uint8_t *data, uint bitlen) {
 	return newimg;
 }
 
-
+/* dec_evenodd_gray
+** parameters:
+**	BMPImage *img: an encoded image to decode
+*/
 uint8_t *dec_evenodd_gray(BMPImage *img) {
 	uint i, j, idx = 0;
 	uint w = img->w, h = img->h;
@@ -45,12 +51,13 @@ uint8_t *dec_evenodd_gray(BMPImage *img) {
 		for (j = 0; j < w; j++) {
 			uint8_t p = img->pixel[i][j];
 			if (idx < MAX_BUF_SIZE) {
+
 				/* [Assignment 1.1.2] Implement here
 					(1) If the pixel (p) is odd, set the bit of data to 1. 
 						Otherwise (if even), set it to 0.
 				*/
 
-				buf[idx++] = (p % 2);
+
 
 				/* Do not edit below */
 			}
@@ -61,6 +68,13 @@ uint8_t *dec_evenodd_gray(BMPImage *img) {
 	return buf;
 }
 
+
+/* enc_evenodd_rgb
+** parameters:
+**	BMPImage *img: an image to encode
+**	uint8_t *data: bit array of data
+**	uint bitlen: the length of data
+*/
 BMPImage *enc_evenodd_rgb(BMPImage *img, uint8_t *data, uint bitlen) {
 	uint i, j, k, idx = 0;
 	uint w = img->w, h = img->h;
@@ -74,17 +88,6 @@ BMPImage *enc_evenodd_rgb(BMPImage *img, uint8_t *data, uint bitlen) {
 			set the color value (r, g, or b) to be odd in the order of r-g-b.
 	*/
 
-	for (i = 0; i < h; i++) {
-		for (j = 0; j < w; j++) {
-			RGB p = img->rgb[i][j];	//pixel value
-			for (k = 0; k < 3; k++) {
-				p.color[k] -= (p.color[k] % 2);
-				if (idx < bitlen) p.color[k] += data[idx++];
-			}
-			newimg->rgb[i][j] = p;		//set pixel value
-		}
-	}
-
 
 
 	/* Do not edit below */
@@ -94,335 +97,217 @@ BMPImage *enc_evenodd_rgb(BMPImage *img, uint8_t *data, uint bitlen) {
 }
 
 
+/* dec_evenodd_rgb
+** parameters:
+**	BMPImage *img: an encoded image to decode
+*/
 uint8_t *dec_evenodd_rgb(BMPImage *img) {
-	uint i, j, k, idx = 0;
-	uint w = img->w, h = img->h;
-	uint8_t *buf = calloc(MAX_BUF_SIZE, sizeof(uint8_t));
-	
+	uint8_t *buf;
 	/* [Assignment 1.2.2] Implement here
 		(1) If the corresponding color pixel (r, g, or b) is odd, 
 			set the bit of data to 1.
 			Otherwise (if even), set it to 0.
 	*/
-	for (i = 0; i < h; i++) {
-		for (j = 0; j < w; j++) {
-			RGB p = img->rgb[i][j];
-			for (k = 0; k < 3; k++) {
-				if (idx < MAX_BUF_SIZE) {
-					buf[idx++] = (p.color[k] % 2);
-				}
-			}
-		}
-	}
+
+
 
 	/* Do not edit below */
 
-	buf = realloc(buf, sizeof(uint8_t) * idx);
 	return buf;
 }
 
-
+/* enc_rgb_shuffle
+** parameters:
+**	BMPImage *img: an image to encode
+**	uint8_t *data: bit array of data
+**	uint bitlen: the length of data
+**	int passwd: the order (1~3) to shuffle (ex: 231)
+*/
 BMPImage *enc_rgb_shuffle(BMPImage *img, uint8_t *data, uint bitlen, int passwd) {
-	uint i, j, k, m, idx = 0;
-	uint w = img->w, h = img->h;
-	BMPImage *newimg = newBMP(w, h);
-
-	uint8_t *order = makeOrder(passwd, 3);
-
-	/* [Assignment 2.1.1] Implement here
-	For all pixel and each r, g, b,
-	(1) If odd, subtract 1 to make it even
-	(2) If there are some data, (use 'bitlen and idx'),
-	and if the corresponding bit is 1,
-	set the color value (r, g, or b) to be odd in the order of r-g-b.
-	*/
-
-	for (i = 0; i < h; i++) {
-		for (j = 0; j < w; j++) {
-			RGB p = img->rgb[i][j];	//pixel value
-			
-			for (k = 0; k < 3; k++) {
-				m = order[k] - 1;
-				p.color[m] -= (p.color[m] % 2);
-				if (idx < bitlen) p.color[m] += data[idx++];
-			}
-			
-			newimg->rgb[i][j] = p;		//set pixel value
-		}
-	}
-
+	BMPImage *newimg;
+	/* [Assignment 2.1.1] Implement here 
+		Also you should implement and use makeOrder() in encutil.c */
 
 
 	/* Do not edit below */
-	free(order);
-	setRGB(newimg);						//update pixel value to image
 	return newimg;
 }
 
 
+/* dec_rgb_shuffle
+** parameters:
+**	BMPImage *img: an encoded image to decode
+**	int passwd: the shuffled order (1~3) (ex: 231)
+*/
 uint8_t *dec_rgb_shuffle(BMPImage *img, int passwd) {
-	uint i, j, k, idx = 0;
-	uint w = img->w, h = img->h;
-	uint8_t *buf = calloc(MAX_BUF_SIZE, sizeof(uint8_t));
-	uint8_t *order = makeOrder(passwd, 3);
-
-	/* [Assignment 2.1.2] Implement here
-	(1) If the corresponding color pixel (r, g, or b) is odd,
-	set the bit of data to 1.
-	Otherwise (if even), set it to 0.
-	*/
-	for (i = 0; i < h; i++) {
-		for (j = 0; j < w; j++) {
-			RGB p = img->rgb[i][j];
-			for (k = 0; k < 3; k++) {
-				if (idx < MAX_BUF_SIZE) {
-					buf[idx++] = (p.color[order[k]-1] % 2);
-				}
-			}
-		}
-	}
-
+	uint8_t *buf;
+	/* [Assignment 2.1.2] Implement here 
+		Also you should implement and use makeOrder() in encutil.c */
 
 
 	/* Do not edit below */
-	free(order);
-	buf = realloc(buf, sizeof(uint8_t) * idx);
 	return buf;
 }
 
-BMPImage *enc_byte_shuffle(BMPImage *img, uint8_t *data, uint bitlen, int passwd) {
-	uint i, j, k, m, idx = 0, btlen;
-	uint w = img->w, h = img->h;
-	BMPImage *newimg;
 
-	uint8_t *order = makeOrder(passwd, 4);
+/* enc_byte_shuffle
+** parameters:
+**	BMPImage *img: an image to encode
+**	uint8_t *data: bit array of data
+**	uint bitlen: the length of data
+**	int passwd: the order (1~4) to shuffle (ex: 2431)
+*/
+BMPImage *enc_byte_shuffle(BMPImage *img, uint8_t *data, uint bitlen, int passwd) {
+	BMPImage *newimg;
+	uint8_t *byte, *bit;
+	uint8_t tmp[4];
 
 
 	/* [Assignment 3.1.1] Implement here
-	For all pixel and each r, g, b,
-	(1) If odd, subtract 1 to make it even
-	(2) If there are some data, (use 'bitlen and idx'),
-	and if the corresponding bit is 1,
-	set the color value (r, g, or b) to be odd in the order of r-g-b.
-	HINT: Use bitToByte()
+		HINT: Use bitToByte()
 	*/
-	uint8_t *byte = bitToByte(data, bitlen, &btlen);
-	uint8_t buf[4];
 
-	for (i = 0; i < (btlen/4)*4; i+=4) {
-		for (k = 0; k < 4; k++) {
-			m = order[k] - 1;
-			buf[k] = byte[i + m];
-		}
-		for (k = 0; k < 4; k++) {
-			byte[i+k] = buf[k];
-		}
-	}
-
-	uint8_t *bit = byteToBit(byte, btlen, NULL);
-
-	newimg = enc_evenodd_gray(img, bit, bitlen);
-
-	free(byte);
-	free(bit);
 	/* Do not edit below */
-	free(order);
-	setPixel(newimg);						//update pixel value to image
 	return newimg;
 }
 
-
+/* dec_byte_shuffle
+** parameters:
+**	BMPImage *img: an encoded image to decode
+**	int passwd: the order (1~4) to shuffle (ex: 2431)
+*/
 uint8_t *dec_byte_shuffle(BMPImage *img, int passwd) {
-	uint i, j, k, blen, idx = 0;
-	uint w = img->w, h = img->h;
 	uint8_t *buf, *byte;
-	uint8_t *order = makeOrder(passwd, 4);
+	uint8_t tmp[4];
 
 	/* [Assignment 3.1.2] Implement here
-	(1) If the corresponding color pixel (r, g, or b) is odd,
-	set the bit of data to 1.
-	Otherwise (if even), set it to 0.
+		HINT: Use bitToByte()
 	*/
-	uint8_t tmp[4];
-	buf = dec_evenodd_gray(img);
-	byte = bitToByte(buf, MAX_BUF_SIZE, &blen);
-
-	for (i = 0; i < (blen / 4) * 4; i += 4) {
-		for (k = 0; k < 4; k++) {
-			j = order[k] - 1;
-			tmp[j] = byte[i + k];
-		}
-		for (k = 0; k < 4; k++) {
-			byte[i + k] = tmp[k];
-		}
-	}
-
-	free(buf);
-
-	buf = byteToBit(byte, blen+1, NULL);
-
-	free(byte);
+	
 
 	/* Do not edit below */
-	free(order);
 	return buf;
 }
 
+
+/* enc_random_shuffle_first
+** parameters:
+**	BMPImage *img: an image to encode
+**	uint8_t *data: bit array of data
+**	uint bitlen: the length of data
+**	int passwd: the password (seed) of encoding; any integer is accepted
+*/
 BMPImage *enc_random_shuffle_first(BMPImage *img, uint8_t *data, uint bitlen, int passwd) {
 	BMPImage *newimg;
-	srand(passwd);
-	int order = intToOrder(rand(), 4);
-	newimg = enc_byte_shuffle(img, data, bitlen, order);
 
+	/* [Assignment 4.1.1] Implement here
+		This code can be very short (3~5 lines)
+		HINT: Use enc_byte_shuffle()
+		Do NOT forget to use srand()
+		Also you should implement and use intToOrder() in encutil.c */
+
+
+
+	/* Do not edit below */
 	return newimg;
 }
 
+/* dec_random_shuffle_first
+** parameters:
+**	BMPImage *img: an encoded image to decode
+**	int passwd: the password (seed) of encoding; any integer is accepted
+*/
 uint8_t *dec_random_shuffle_first(BMPImage *img, int passwd) {
 	uint8_t *buf;
-	srand(passwd);
-	int order = intToOrder(rand(), 4);
-	buf = dec_byte_shuffle(img, order);
+	/* [Assignment 4.1.2] Implement here
+		This code can be very short (3~5 lines)
+		HINT: Use dec_byte_shuffle()
+		Do NOT forget to use srand()
+		Also you should implement and use intToOrder() in encutil.c */
 
+
+
+	/* Do not edit below */
 	return buf;
-		
 }
 
+/* enc_random_shuffle_each
+** parameters:
+**	BMPImage *img: an image to encode
+**	uint8_t *data: bit array of data
+**	uint bitlen: the length of data
+**	int passwd: the password (seed) of encoding; any integer is accepted
+*/
 BMPImage *enc_random_shuffle_each(BMPImage *img, uint8_t *data, uint bitlen, int passwd) {
-	uint i, j, k, m, idx = 0, btlen;
-	uint w = img->w, h = img->h;
 	BMPImage *newimg;
-
-	uint8_t *order;
-
+	uint8_t buf[4];
+	uint8_t *byte, *bit;
 
 	/* [Assignment 4.2.1] Implement here
-	For all pixel and each r, g, b,
-	(1) If odd, subtract 1 to make it even
-	(2) If there are some data, (use 'bitlen and idx'),
-	and if the corresponding bit is 1,
-	set the color value (r, g, or b) to be odd in the order of r-g-b.
-	HINT: Use bitToByte()
+		HINT: Use bitToByte()
+		Do NOT forget to use srand()
 	*/
-	uint8_t *byte = bitToByte(data, bitlen, &btlen);
-	uint8_t buf[4];
 
-	srand(passwd);
-
-	for (i = 0; i < (btlen / 4) * 4; i += 4) {
-		order = makeOrder(intToOrder(rand(), 4), 4);
-		for (k = 0; k < 4; k++) {
-			m = order[k] - 1;
-			buf[k] = byte[i + m];
-		}
-		for (k = 0; k < 4; k++) {
-			byte[i + k] = buf[k];
-		}
-		free(order);
-	}
-
-	uint8_t *bit = byteToBit(byte, btlen, NULL);
-
-	newimg = enc_evenodd_gray(img, bit, bitlen);
-
-	free(byte);
-	free(bit);
+	
 	/* Do not edit below */
-	setPixel(newimg);						//update pixel value to image
 	return newimg;
 }
 
+/* dec_random_shuffle_each
+** parameters:
+**	BMPImage *img: an encoded image to decode
+**	int passwd: the password (seed) of encoding; any integer is accepted
+*/
 uint8_t *dec_random_shuffle_each(BMPImage *img, int passwd) {
-	uint i, j, k, blen, idx = 0;
-	uint w = img->w, h = img->h;
 	uint8_t *buf, *byte;
-	uint8_t *order;
+	uint8_t tmp[4];
 
 	/* [Assignment 4.2.2] Implement here
-	(1) If the corresponding color pixel (r, g, or b) is odd,
-	set the bit of data to 1.
-	Otherwise (if even), set it to 0.
+		HINT: Use bitToByte()
+		Do NOT forget to use srand()
 	*/
-	uint8_t tmp[4];
-	buf = dec_evenodd_gray(img);
-	byte = bitToByte(buf, MAX_BUF_SIZE, &blen);
-	srand(passwd);
 
-	for (i = 0; i < (blen / 4) * 4; i += 4) {
-		order = makeOrder(intToOrder(rand(), 4), 4);
-		for (k = 0; k < 4; k++) {
-			j = order[k] - 1;
-			tmp[j] = byte[i + k];
-		}
-		for (k = 0; k < 4; k++) {
-			byte[i + k] = tmp[k];
-		}
-		free(order);
-	}
-
-	free(buf);
-
-	buf = byteToBit(byte, blen + 1, NULL);
-
-	free(byte);
 
 	/* Do not edit below */
 	return buf;
 }
 
+/* enc_random_invert
+** parameters:
+**	BMPImage *img: an image to encode
+**	uint8_t *data: bit array of data
+**	uint bitlen: the length of data
+**	int passwd: the password (seed) of encoding; any integer is accepted
+*/
 BMPImage *enc_random_invert(BMPImage *img, uint8_t *data, uint bitlen, int passwd) {
-	uint i, btlen;
 	BMPImage *newimg;
+	uint8_t *byte, *bit;
 
-
-	/* [Assignment 4.2.1] Implement here
-	For all pixel and each r, g, b,
-	(1) If odd, subtract 1 to make it even
-	(2) If there are some data, (use 'bitlen and idx'),
-	and if the corresponding bit is 1,
-	set the color value (r, g, or b) to be odd in the order of r-g-b.
-	HINT: Use bitToByte()
-
-	BE CAREFUL THAT YOU SHOULD NOT INVERT 0xFF SO THAT IT COULD NOT END THERE
+	/* [Assignment 4.3.1] Implement here
+		HINT: Use bitToByte(), byteToBit(), enc_evenodd_gray()
+		Do NOT forget to use srand()
+		Be careful that you must NOT invert 0xFF in order not to be ended there
 	*/
-	uint8_t *byte = bitToByte(data, bitlen, &btlen);
-	srand(passwd);
 
-	for (i = 0; i < btlen; i++) {
-		if (rand() % 2 == 1 && byte[i] != 0xFF) byte[i] = ~byte[i];
-	}
-
-	uint8_t *bit = byteToBit(byte, btlen, NULL);
-
-	newimg = enc_evenodd_gray(img, bit, bitlen);
-
-	free(byte);
-	free(bit);
+	
 	/* Do not edit below */
-	setPixel(newimg);						//update pixel value to image
 	return newimg;
 }
 
+/* dec_random_invert
+** parameters:
+**	BMPImage *img: an encoded image to decode
+**	int passwd: the password (seed) of encoding; any integer is accepted
+*/
 uint8_t *dec_random_invert(BMPImage *img, int passwd) {
-	uint i,  blen;
 	uint8_t *buf, *byte;
 
 	/* [Assignment 4.2.2] Implement here
-	(1) If the corresponding color pixel (r, g, or b) is odd,
-	set the bit of data to 1.
-	Otherwise (if even), set it to 0.
+		HINT: Use bitToByte(), byteToBit(), dec_evenodd_gray()
+		Do NOT forget to use srand()
+		Be careful that you must NOT invert 0xFF, 0x00
 	*/
 
-	buf = dec_evenodd_gray(img);
-	byte = bitToByte(buf, MAX_BUF_SIZE, &blen);
-	srand(passwd);
-
-	for (i = 0; i < blen; i++) {
-		if (rand() % 2 == 1 && byte[i] != 0xFF)  byte[i] = ~byte[i];
-	}
-
-	free(buf);
-	buf = byteToBit(byte, blen + 1, NULL);
-	free(byte);
 
 	/* Do not edit below */
 	return buf;
