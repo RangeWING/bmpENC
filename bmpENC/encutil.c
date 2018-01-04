@@ -78,6 +78,13 @@ uint8_t *makeOrder(int n, int len) {
 	return arr;
 }
 
+/* intToOrder
+** @parameters:
+**	int n: integer number
+**	int len: the length of order
+** @return: order, an integer consists of 1-len at each digit, without duplication
+** @example: intToOrder(16982, 4) MAY return 1324
+*/
 int intToOrder(int n, int len) {
 	int result = 0;
 

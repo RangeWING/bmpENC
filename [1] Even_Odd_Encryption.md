@@ -2,7 +2,8 @@
 You should implement even/odd encryption/decryption.  
 The pixel value should be **ODD** when the corresponding bit is **1**, and it should be **EVEN** when the corresponding one is **0**.  
 홀수/짝수 암호화/복호화를 구현하세요.  
-대응하는 bit가 **1**일 때 픽셀 값을 **홀수**로, **0**일 떄는 **짝수**로 설정합니다.
+대응하는 bit가 **1**일 때 픽셀 값을 **홀수**로, **0**일 떄는 **짝수**로 설정합니다.  
+예를 들어, 흑백 사진의 픽셀을 읽었을 때 값이 순서대로 `17 125 70 32`라면, 숨겨진 값은 `1100`입니다.  
 
 ## 1.1 Grayscale
 Use only grayscale value. Use `pixel` array of BMPImage.  
@@ -20,6 +21,10 @@ Implement `dec_evenodd_gray()` function in enclib.c
 enclib.c의 `dec_evenodd_gray()` 함수를 완성하라.
 1. 	If the pixel (p) is odd, set the bit of data to 1.  Otherwise (if even), set it to 0.  
 	만약 픽셀 값 p가 홀수이면, data의 bit를 1로 설정한다. 아니라면, (짝수라면), 0으로 설정한다.
+	
+### 1.1.3 Image Decryption
+Find the encoded string from `white.enc.bmp` and `kaist.enc.bmp` in `img/1` folder.
+`img/1` 폴더의 `white.enc.bmp`와 `kaist.enc.bmp`를 해독하여 숨겨진 글을 찾으세요.
 			
 ## 1.2 RGB
 Use RGB value, in order of R-G-B. Use `rgb` array of BMPImage.  
@@ -41,3 +46,8 @@ enclib.c의 `dec_evenodd_rgb()` 함수를 완성하라.
 1. 	If the corresponding color pixel (r, g, or b) is odd, set the bit of data to 1.
 	Otherwise (if even), set it to 0.  
 	만약 픽셀 값 r, g, 또는 b가 홀수이면, data의 bit를 1로 설정한다. 아니라면, (짝수라면), 0으로 설정한다.
+
+### 1.2.3 Image Decryption
+Find the encoded string from `E1.enc.bmp` and `pond.enc.bmp` in `img/1` folder.
+`img/1` 폴더의 `E1.enc.bmp`와 `pond.enc.bmp`를 해독하여 숨겨진 글을 찾으세요.
+			
