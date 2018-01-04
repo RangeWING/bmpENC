@@ -12,6 +12,8 @@
 먼저, 이해를 돕기 위해 참고 자료 2가지를 준비하였으니 읽어주세요.  
 + 영상: [Principle of Steganography](https://www.youtube.com/watch?v=z_ypj5q5fzE)
 + 글: [스테가노그래피](http://blog.naver.com/PostView.nhn?blogId=namuya11&logNo=40207109776&parentCategoryNo=&categoryNo=29&viewDate=&isShowPopularPosts=true&from=search)  
++ 글: [스테가노그래피, bloter.net (1)](http://www.bloter.net/archives/289506)
++ 글: [스테가노그래피, bloter.net(2)](https://www.bloter.net/archives/291280)
 
 위 자료 중, 두 번째에 있는 블로그 글이 도움이 될 것입니다.
 수업 처음 (창의적 프로젝트 1)에서는 이 자료를 활용하여 암호화 기법 및 스테가노그래피 등에 대해 소개해주시면 됩니다.
