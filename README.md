@@ -13,7 +13,7 @@ tqbmp library를 사용합니다. 사용법과 예제는 [**이 링크**](https:
  + enclib: the code that you should implement (구현할 파일)
 
 ## 튜터님들께
-기존 Instructor's Mannual 내용을 각 Assignment 설명에 모두 넣었습니다.
+기존 Instructor's Mannual 내용을 각 Assignment 설명에 모두 넣었습니다.  
 또한, 연락 주시면 예시 교재 및 완성 예시 코드를 보내드리겠습니다.  
 맨 아래에 있는 연락처로 메일 주세요.
 
@@ -36,9 +36,6 @@ Look at each description file
 + [Assignment 5 : Advanced Technique (Only for Lv3)](%5B5%5D%20Advanced_Technique.md)
 + [Assignment 6 : Creative Technique](%5B6%5D%20Creative_Technique.md)
 + [Assignment 7 : Presentation](%5B7%5D%20Presentation.md)
-
-#### Instructor's Mannual
-+ Korean: [click here](Instructor.md) 
 
 ### Contact
 RangeWING (rangewing@wingdev.kr or rangewing@kaist.ac.kr)  
