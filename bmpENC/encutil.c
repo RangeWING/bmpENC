@@ -27,7 +27,7 @@ uint8_t *bitToByte(uint8_t *b, uint len, uint *bytelen) {
 
 	for (i = 0; i < len / 8; i++) {
 		for (j = 0; j < 8; j++) {
-			bt[i] = (bt[i] << 1) | (b[i * 8 + j] & 0x1);
+			bt[i] = (bt[i] << 1) | (b[i * 8 + j] & 0x1);	//8bit to 1byte
 		}
 		if (bt[i] == 0) break;
 	}

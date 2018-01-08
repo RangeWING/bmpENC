@@ -5,6 +5,10 @@ The pixel value should be **ODD** when the corresponding bit is **1**, and it sh
 대응하는 bit가 **1**일 때 픽셀 값을 **홀수**로, **0**일 떄는 **짝수**로 설정합니다.  
 예를 들어, 흑백 사진의 픽셀을 읽었을 때 값이 순서대로 `17 125 70 32`라면, 숨겨진 값은 `1100`입니다.  
 
+**주의**: 픽셀 값은 0 이상 255 이하입니다. 255에서 1을 더하거나, 0에서 1을 뺄 수 없으므로,  
+원본 픽셀이 짝수일 때 데이터가 1이라면 1을 더해주고, 홀수일 때 데이터가 0이라면 1을 빼주세요.  
+(홀수면 먼저 1을 빼서 짝수로 만들고, 데이터에 따라 더해주거나 그대로 두세요)  
+
 ## 1.1 Grayscale
 Use only grayscale value. Use `pixel` array of BMPImage.  
 흑백 값만 사용합니다. BMPImage 구조체의 `pixel` 배열을 사용하세요.
@@ -21,9 +25,11 @@ Implement `dec_evenodd_gray()` function in enclib.c
 enclib.c의 `dec_evenodd_gray()` 함수를 완성하라.
 1. 	If the pixel (p) is odd, set the bit of data to 1.  Otherwise (if even), set it to 0.  
 	만약 픽셀 값 p가 홀수이면, data의 bit를 1로 설정한다. 아니라면, (짝수라면), 0으로 설정한다.
++ Since we cannot know the length of the data, you should convert the whole image to bit array. And then `byteToBit()` will cut the data in the right size by detecting `0x00`, the end of data.
++ 데이터의 길이를 알 수 없으므로, 이미지 전체를 bit array로 변환합니다. `byteToBit()` 함수에서 데이터의 마지막인 `0x00`을 감지하여 자동으로 자릅니다.
 	
 ### 1.1.3 Image Decryption
-Find the encoded string from `white.enc.bmp` and `kaist.enc.bmp` in `img/1` folder.
+Find the encoded string from `white.enc.bmp` and `kaist.enc.bmp` in `img/1` folder.  
 `img/1` 폴더의 `white.enc.bmp`와 `kaist.enc.bmp`를 해독하여 숨겨진 글을 찾으세요.
 			
 ## 1.2 RGB
