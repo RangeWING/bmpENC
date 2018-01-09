@@ -312,3 +312,65 @@ uint8_t *dec_random_invert(BMPImage *img, int passwd) {
 	/* Do not edit below */
 	return buf;
 }
+
+
+/* Below is only for level 3 */
+
+BMPImage *enc_file_rgb(BMPImage *img, FILE *file) {
+	BMPImage *newimg;
+	size_t size;
+	uint blen, n;
+	uint8_t *buf, *bit;
+	rewind(file);
+	
+	fseek(file, 0, SEEK_END);
+	size = ftell(file);	//size(length) of the file in byte
+	rewind(file);
+
+	
+	/* [Assignment 5.3]
+		There are at least two ways to implement this.
+		(1) Read and store the whole file in a buffer and then call enc_evenodd_.. function
+		(2) Read the small part of the file and encode it to the file.
+			Repeat it until the file ends (EOF).
+		The first one is simple, but quite inefficient.
+		The second one is quite complex, but more efficient than (1).
+
+		I recommend you to use (1), because the time may not sufficient in the camp.
+		But if you are expert of C, then you may enjoy to use (2).
+
+		If you use (1), you should use attachHeader() before using byteToBit(),
+		since byteToBit() does not attach header.
+		
+		If you decided to implement this as (2), you should encode the header and the footer also. 
+		byteToBit() does not attach header, and also attachHeader() will attach the headers for every section of data.
+		The header should be at the head and the tail of the while data, not at the middle.
+	*/
+
+	/* 	[Assignment 5.3.1] Implement Here 
+		The implementation can be short (5~8 lines) */
+		
+		
+	/* Do not edit below */
+
+	free(buf);
+	free(bit);
+
+	return newimg;
+}
+
+FILE *dec_file_rgb(BMPImage *img, FILE *decfile) {
+	size_t size;
+	uint blen, n;
+	uint8_t *byte, *bit;
+	
+	/*  [Assignment 5.3.2] Implement Here
+	    you must increase MAX_BUF_SIZE in encutil.h to 50000, for ~5KB file
+		Use bitToByte_strict() function instead of bitToByte(), since we cannot know the file size 
+		The implementation can be short (4~6 lines) */
+
+	free(bit);
+	free(byte);
+
+	return decfile;
+}
