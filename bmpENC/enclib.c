@@ -328,7 +328,7 @@ BMPImage *enc_file_rgb(BMPImage *img, FILE *file) {
 	rewind(file);
 
 	
-	/* [Assignment 5.3]
+	/* [Assignment 5.2]
 		There are at least two ways to implement this.
 		(1) Read and store the whole file in a buffer and then call enc_evenodd_.. function
 		(2) Read the small part of the file and encode it to the file.
@@ -347,7 +347,7 @@ BMPImage *enc_file_rgb(BMPImage *img, FILE *file) {
 		The header should be at the head and the tail of the while data, not at the middle.
 	*/
 
-	/* 	[Assignment 5.3.1] Implement Here 
+	/* 	[Assignment 5.2.1] Implement Here 
 		The implementation can be short (5~8 lines) */
 		
 		
@@ -364,7 +364,7 @@ FILE *dec_file_rgb(BMPImage *img, FILE *decfile) {
 	uint blen, n;
 	uint8_t *byte, *bit;
 	
-	/*  [Assignment 5.3.2] Implement Here
+	/*  [Assignment 5.2.2] Implement Here
 	    you must increase MAX_BUF_SIZE in encutil.h to 50000, for ~5KB file
 		Use bitToByte_strict() function instead of bitToByte(), since we cannot know the file size 
 		The implementation can be short (4~6 lines) */
