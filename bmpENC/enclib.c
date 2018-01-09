@@ -316,6 +316,46 @@ uint8_t *dec_random_invert(BMPImage *img, int passwd) {
 
 /* Below is only for level 3 */
 
+
+/* enc_hash
+** parameters:
+**	BMPImage *img: an image to encode
+**	uint8_t *data: bit array of data
+**	uint bitlen: the length of data
+**	int passwd: the password of encoding; any integer is accepted
+*/
+BMPImage *enc_hash(BMPImage *img, uint8_t *data, uint bitlen, int passwd) {
+	BMPImage *newimg;
+	uint8_t *byte, *bit;
+
+	/* [Assignment 5.1.1] Implement here
+		HINT: Use MD5()
+		Be careful that you must NOT invert 0xFF in order not to be ended there
+	*/
+
+	
+	/* Do not edit below */
+	return newimg;
+}
+
+/* dec_random_invert
+** parameters:
+**	BMPImage *img: an encoded image to decode
+**	int passwd: the password of encoding; any integer is accepted
+*/
+uint8_t *dec_hash(BMPImage *img, int passwd) {
+	uint8_t *buf, *byte;
+
+	/* [Assignment 5.1.2] Implement here
+		HINT: Use MD5()
+		Be careful that you must NOT invert 0xFF, 0x00
+	*/
+
+
+	/* Do not edit below */
+	return buf;
+}
+
 BMPImage *enc_file_rgb(BMPImage *img, FILE *file) {
 	BMPImage *newimg;
 	size_t size;

@@ -33,6 +33,9 @@ uint8_t *dec_random_shuffle_each(BMPImage *img, int passwd);
 BMPImage *enc_random_invert(BMPImage *img, uint8_t *data, uint bitlen, int passwd);
 uint8_t *dec_random_invert(BMPImage *img, int passwd);
 
+BMPImage *enc_hash(BMPImage *img, uint8_t *data, uint bitlen, int passwd);
+uint8_t *dec_hash(BMPImage *img, int passwd);
+
 BMPImage *enc_file_rgb(BMPImage *img, FILE *file);
 FILE *dec_file_rgb(BMPImage *img, FILE *decfile);
 

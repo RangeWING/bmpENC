@@ -140,6 +140,50 @@ char *decBMP(BMPImage *img, uint passwd, uint8_t *(*decfn)(BMPImage *, uint)) {
 }
 
 
+/* Below is only for Lv3 */
+
+void MD5(struct MD5Hash *hash, char *str) {
+	MD5_CTX ctx;
+
+	MD5Init(&ctx);
+	MD5Update(&ctx, str, strlen(str));
+	MD5Final(&ctx);
+
+	memcpy(hash->byte, ctx.digest, 16);
+}
+
+
+uint8_t *bitToByte_strict(uint8_t *b, uint *bytelen) {
+	uint8_t *bt = calloc(sizeof(uint8_t), MAX_BUF_SIZE);
+	uint curSize = MAX_BUF_SIZE;
+	uint i, j, tmp = 0;
+	
+	for (i = 0;; i++) {
+		for (j = 0; j < 8; j++) {
+			bt[i] = (bt[i] << 1) | (b[i * 8 + j] & 0x1);
+		}
+
+		if (i == curSize - 1) {
+			curSize *= 2;
+			bt = realloc(bt, sizeof(uint8_t) * curSize);
+		}
+		if (bt[i] == 0) {
+			memcpy(&tmp, &bt[i - 4], 4);
+			if (tmp == DATA_FOOTER) {
+				break;
+			}
+		}
+	}
+
+	bt = realloc(bt, sizeof(uint8_t)*(i + 1));
+
+	if (bytelen != NULL)
+		*bytelen = i;
+
+	return bt;
+}
+
+
 /*
 ******************************************************************
 ** Below is MD5 hash algorithm.									**

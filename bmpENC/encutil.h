@@ -30,6 +30,17 @@ int intToOrder(int n, int len);
 void attachHeader(uint8_t **b, uint len);
 void detachHeader(uint8_t **b, uint len);
 
+/* Below is only for Lv3 */
+struct MD5Hash {
+	union {
+		uint8_t byte[16];
+		uint32_t data[4];
+	};
+};
+
+void MD5(struct MD5Hash *hash, char *str);
+uint8_t *bitToByte_strict(uint8_t *b, uint *bytelen);
+
 /*
 ******************************************************************
 ** Below is MD5 hash algorithm.									**
